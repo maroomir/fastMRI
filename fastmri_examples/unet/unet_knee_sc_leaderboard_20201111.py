@@ -82,14 +82,14 @@ def build_args():
 
     # basic args
     path_config = pathlib.Path("../../fastmri_dirs.yaml")
-    backend = "ddp"
-    num_gpus = 0 # 32
+    backend = "ddp_cpu"  # "ddp" in my desktop (RTX-2070)
+    num_gpus = 0  # 1 in My desktop (cuDNN)
     batch_size = 1
 
     # set defaults based on optional directory config
     data_path = fetch_dir("knee_path", path_config)
     default_root_dir = (
-        fetch_dir("log_path", path_config) / "unet" / "knee_sc_leaderboard"
+            fetch_dir("log_path", path_config) / "unet" / "knee_sc_leaderboard"
     )
 
     # client arguments
@@ -168,7 +168,7 @@ def build_args():
         checkpoint_dir.mkdir(parents=True)
 
     args.checkpoint_callback = pl.callbacks.ModelCheckpoint(
-        filepath=checkpoint_dir,
+        dirpath=checkpoint_dir,
         verbose=True,
         prefix="",
     )
