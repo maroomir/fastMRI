@@ -83,7 +83,7 @@ class UnetModule(MriModule):
     def training_step(self, batch, batch_idx):
         image, target, _, _, _, _, _ = batch
         output = self(image)
-        loss = F.l1_loss(output, target)
+        loss = F.mse_loss(output, target) # F.l1_loss(output, target) # Tuning @maroomir
 
         self.log("loss", loss.detach())
 
@@ -102,7 +102,7 @@ class UnetModule(MriModule):
             "max_value": max_value,
             "output": output * std + mean,
             "target": target * std + mean,
-            "val_loss": F.l1_loss(output, target),
+            "val_loss": F.mse_loss(output, target), # F.l1_loss(output, target) # Tuning @maroomir
         }
 
     def test_step(self, batch, batch_idx):

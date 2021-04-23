@@ -82,8 +82,8 @@ def build_args():
 
     # basic args
     path_config = pathlib.Path("../../fastmri_dirs.yaml")
-    backend = "ddp_cpu"  # "ddp" in my desktop (RTX-2070)
-    num_gpus = 0  # 1 in My desktop (cuDNN)
+    backend = "ddp"  # "ddp" in my desktop (RTX-2070) # "ddp_cpu" in labtop
+    num_gpus = 1  # 1 in desktop/colab # 0 in laptop
     batch_size = 1
 
     # set defaults based on optional directory config
