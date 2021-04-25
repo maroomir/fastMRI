@@ -31,7 +31,7 @@ class UnetModule(MriModule):
         chans=32,
         num_pool_layers=4,
         drop_prob=0.0,
-        lr=0.001,
+        lr=0.0001, # origin : 0.001
         lr_step_size=40,
         lr_gamma=0.1,
         weight_decay=0.0,
